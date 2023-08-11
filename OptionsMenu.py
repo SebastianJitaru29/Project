@@ -25,47 +25,55 @@ def options_menu():
         if answers['option'] == '1) AV test engine':
             av_menu()
         elif answers['option'] == '2) MalwareBuilder':
-            mb_menu()
+            print("Selected MalwareBuilder")
         elif answers['option'] == '3) Exit':
             sys.exit("Exiting the program")
 
 def av_menu():
     exit_loop2 = False
-    AVToptions = {
-        '1': ('Worm', executeWorm),
-        '2': ('Trojan', executeTrojan),
-        '3': ('Rootkit', executeRootkit),
-        '4': ('CryptoMining', executeCryptoMining),
-        '5': ('Ransomeware', executeRansomware),
-        '6': ('Spyware', executeSpyware)
-    }
-
     while not exit_loop2:
         options = [
             {
                 'type': 'list',
                 'name': 'option',
                 'message': 'Select AV test type',
-                'choices': [f'{key}) {value[0]}' for key, value in AVToptions.items()]
+                'choices': [
+                    '1) Worm',
+                    '2) Trojan',
+                    '3) Rootkit',
+                    '4) CryptoMining',
+                    '5) Ransomware',
+                    '6) Spyware',
+                    '7) Go back'
+                ]
             }
         ]
-        answers = prompt(options)
+        answers = prompt(options,style = custom_style_2)
 
-        selected_option = answers['option']
-        if selected_option in AVToptions:
-            function_to_execute = AVToptions[selected_option][1]
-            function_to_execute()
+        if answers['option'] == '1) Worm':
+          executeWorm()
+        elif answers['option'] == '2) Trojan':
+            executeTrojan()
+        elif answers['option'] == '3) Rootkit':
+            executeRootkit()
+        elif answers['option'] == '4) CryptoMining':
+            executeCryptoMining()
+        elif answers['option'] == '5) Ransomware':
+            executeRansomware()
+        elif answers['option'] == '6) Spyware':
+            executeSpyware()
+        elif answers['option'] == '7) Go back':
+            exit_loop2 = True
 
-def mb_menu():
-    MBoptions = {
-        '1': ('Trojan', executeTrojan),
-        '2': ('Rootkit', executeRootkit),
-        '3': ('CryptoMining', executeCryptoMining),
-        '4': ('Ransomeware', executeRansomware),
-        '5': ('Spyware', executeSpyware)
-    }
-
-    # Add menu logic here similar to av_menu()
+# def mb_menu():
+#     MBoptions = {
+#         '1': ('Trojan', executeTrojan),
+#         '2': ('Rootkit', executeRootkit),
+#         '3': ('CryptoMining', executeCryptoMining),
+#         '4': ('Ransomeware', executeRansomware),
+#         '5': ('Spyware', executeSpyware)
+#     }
+#     # Add menu logic here similar to av_menu()
 
 def executeWorm():
     print('Executing Worm')
